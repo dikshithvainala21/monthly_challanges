@@ -5,3 +5,6 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("<h1>Monthly Challenges</h1>" "<h2>DIKSHITH VAINALA</h2>" )
+
+def february(request):
+    return HttpResponse("february challenge")
