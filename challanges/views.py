@@ -1,12 +1,13 @@
 from calendar import month
 
 from django.shortcuts import render
-from django.http import HttpResponse , HttpResponseNotFound
+from django.http import HttpResponse , HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("<h1>Monthly Challenges</h1>" "<h2>DIKSHITH VAINALA</h2>" )
+# def index(request):
+#     return HttpResponse("<h1>Monthly Challenges</h1>" "<h2>DIKSHITH VAINALA</h2>" )
 
 #----------------------Using Dictionary to store the monthly challenges-----------------------------#
 monthly_challenges = {
@@ -99,4 +100,19 @@ def monthly_challanges(request,month):
 
 
 def monthly_challanges_by_number(request, month):
-    return HttpResponse(f"<h1>Monthly Challenges</h1><h2>DIKSHITH VAINALA</h2><p>Month: {month}</p>")
+    months = list(monthly_challenges.keys())
+    if month > len(months):
+        return HttpResponseNotFound("Bad request Invalid month number.")
+    redirect_month = months[month-1]
+    return HttpResponseRedirect(f"/challanges/{redirect_month}")
+
+def index(request):
+    list_items = ""
+    months = list(monthly_challenges.keys())
+    for month in months:
+        capitalized_month = month.capitalize()
+        month_path = reverse("month-challanges", args=[month])
+        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
+    response_data = f"<ul>{list_items}</ul>"
+    return HttpResponse(response_data)
+

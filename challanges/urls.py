@@ -5,7 +5,7 @@ from django.urls import path
 
 urlpatterns = [
     #-------------------------Manual path segment------------------------------------#
-    path("Index",views.index),
+    path("",views.index),
   # path("January",views.january),
   # path("February",views.february),
   # path("March",views.march),
@@ -20,6 +20,6 @@ urlpatterns = [
   # path("December",views.december)
 # -------------------------------Dynamic path segment-------------------------------- #
   path("<int:month>",views.monthly_challanges_by_number),
-  path("<str:month>",views.monthly_challanges)
+  path("<str:month>",views.monthly_challanges,name="month-challanges")
 
 ]
