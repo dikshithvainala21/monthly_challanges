@@ -19,6 +19,7 @@ urlpatterns = [
   # path("November",views.november),
   # path("December",views.december)
 # -------------------------------Dynamic path segment-------------------------------- #
-  path("<month>",views.monthly_challanges)
+  path("<int:month>",views.monthly_challanges_by_number),
+  path("<str:month>",views.monthly_challanges)
 
 ]
