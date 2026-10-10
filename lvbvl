@@ -1,0 +1,16 @@
+[1mdiff --git a/challanges/views.py b/challanges/views.py[m
+[1mindex 1c4dda9..47b148f 100644[m
+[1m--- a/challanges/views.py[m
+[1m+++ b/challanges/views.py[m
+[36m@@ -48,8 +48,9 @@[m [mdef monthly_challanges(request,month):[m
+ def monthly_challanges(request,month):[m
+     try:[m
+         challanges_text = monthly_challenges[month][m
+[31m-        html_content = render_to_string("challanges/challange.html")[m
+[31m-        return HttpResponse(html_content)[m
+[32m+[m[32m        return render(request,"challanges/challange.html")[m
+[32m+[m[32m        # html_content = render_to_string("challanges/challange.html")[m
+[32m+[m[32m        # return HttpResponse(html_content)[m
+     except:[m
+         return HttpResponseNotFound("<h1>Bad request</h1><p>Month is not supported.</p>")[m
+     [m

@@ -48,8 +48,9 @@ def monthly_challanges(request,month):
 def monthly_challanges(request,month):
     try:
         challanges_text = monthly_challenges[month]
-        html_content = render_to_string("challanges/challange.html")
-        return HttpResponse(html_content)
+        return render(request,"challanges/challange.html")
+        # html_content = render_to_string("challanges/challange.html")
+        # return HttpResponse(html_content)
     except:
         return HttpResponseNotFound("<h1>Bad request</h1><p>Month is not supported.</p>")
     
