@@ -3,6 +3,7 @@ from calendar import month
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -42,6 +43,15 @@ def monthly_challanges(request,month):
         return HttpResponseNotFound("Bad request month is not supported.")
 
 #************************************************************************************************************
+
+#********************************Loading the html template using render_to_string() method***************************************
+def monthly_challanges(request,month):
+    try:
+        challanges_text = monthly_challenges[month]
+        html_content = render_to_string("challanges/challange.html")
+        return HttpResponse(html_content)
+    except:
+        return HttpResponseNotFound("<h1>Bad request</h1><p>Month is not supported.</p>")
     
 # def march(request):
 #     return HttpResponse("March is a transitional month, with the arrival of spring in many parts of India. The weather becomes more comfortable, and people enjoy outdoor activities. Holi, the festival of colors, is celebrated in March.\nSpecial days: Holi, International Women's Day (March 8).")
